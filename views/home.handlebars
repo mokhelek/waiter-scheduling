@@ -1,0 +1,36 @@
+<h1>Home Page</h1> <span>
+    <a href="/logout/user">Logout</a>
+</span>
+
+
+<br />
+<div class="container">
+        {{#each days}}
+            {{this.weekday}} <br>
+        {{/each}}
+
+        <div class="justify-content-center d-flex">
+
+            <div  class="days-wrapper">
+               
+                {{#each all_days}}
+                
+                <div id="1" data-value="{{this.weekday}}" class=" days">
+                     <br>
+                    {{this.weekday}} <br>
+                    <p>{{this.counter}}</p>
+                </div>
+                {{/each}}
+                
+            </div>
+
+        </div>
+
+    <br>
+    <br>
+    <center>
+        <button class="btn btn-outline-primary btn-sm" id="submit" >Schedule</button>
+    </center>
+             
+</div>
+

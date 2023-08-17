@@ -1,0 +1,57 @@
+body {
+  padding: 50px;
+
+}
+
+a {
+  color: #00B7FF;
+}
+
+.days{
+  border: 2px rgb(223, 103, 42) solid;
+  border-radius: 5px;
+  padding:1rem;
+  flex: 0 1 140px;
+  text-align:center;
+  height: 7rem;
+
+  color: rgb(53, 53, 53);
+  text-shadow: 0 0 6px white;
+  
+
+  cursor: pointer;
+  user-select: none;
+}
+
+.days.selected {
+  background-color: lightblue !important;
+}
+
+.days-wrapper{
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  
+}
+
+.waiter li:nth-child(2n + 1){
+  background-color: #92929241;
+}
+
+li{
+  list-style: none;
+  /* margin: 1rem 0rem; */
+  padding:0.8rem
+}
+
+
+
+#details {
+  display: none;
+}
+
+.days:hover + #details {
+  display: block !important;
+}
