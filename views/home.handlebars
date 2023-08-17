@@ -5,9 +5,7 @@
 
 <br />
 <div class="container">
-        {{#each days}}
-            {{this.weekday}} <br>
-        {{/each}}
+       
 
         <div class="justify-content-center d-flex">
 
@@ -31,6 +29,14 @@
     <center>
         <button class="btn btn-outline-primary btn-sm" id="submit" >Schedule</button>
     </center>
-             
+
+    <hr>
+    <h3>Scheduled Days</h3>
+    <br>
+     {{#each days}}
+     <p>{{this.weekday}}</p>
+     {{/each}}
+
+
 </div>
 
