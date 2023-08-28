@@ -1,13 +1,9 @@
 <!-- login.handlebars -->
 
-
-{{#each messages.info}}
-    {{messages.info}} cc
-{{/each}}
 <div style="height: 80vh;" class="container d-flex justify-content-center align-items-center">
     <div style="border:1px solid gray; padding:4rem;box-shadow:0 0 8px rgb(177, 177, 177)" class="col-7">
         <center><h2>Login</h2></center>
-        <form action="/login" method="post">
+        <form action="/auth/login" method="post">
             <label for="username">username</label>
             <input id="username" style="margin-bottom: 1rem;" class="form-control" type="text" name="username" placeholder="Username" required />
 
