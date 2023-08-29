@@ -37,7 +37,7 @@ export default function authService(db) {
             await db.none("INSERT INTO waiters(username, password) VALUES($1, $2)", [username, hashedPassword]);
             res.redirect("/login/user");
         } catch (error) {
-            console.log(error);
+    
             res.redirect("/register");
         }
     }

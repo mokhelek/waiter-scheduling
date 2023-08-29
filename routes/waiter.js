@@ -15,7 +15,7 @@ function isAuthenticated(req, res, next) {
 router.get("/:username", isAuthenticated, async (req, res) => {
     // todo: -> Days booked by the current logged-in waiter.
     let days = await db.any("SELECT * FROM days WHERE username = $1", [req.session.user.username]);
-    let all_days = await db.any("SELECT * FROM all_days");
+    let all_days = await db.any("SELECT * FROM all_days ORDER BY id ASC");
     let authenticatedUser = req.session.user.username
     res.render("home", { days, all_days, authenticatedUser});
 });
@@ -32,8 +32,11 @@ router.post("/:username", async (req, res) => {
     Promise.all(insertQueries);
 
     const insertQueriesCounter = selectedValues.map((item) => {
-        return db.none("UPDATE all_days SET counter = all_days.counter + 1 WHERE weekday = $1", [item]);
+        // return db.none("UPDATE all_days SET counter = all_days.counter + 1 WHERE weekday = $1", [item]);
+       return  db.none("UPDATE all_days SET counter = all_days.counter + 1, status = CASE WHEN all_days.counter >= 3 THEN 'sufficient' ELSE 'insufficient**' END WHERE weekday = $1", [item]);
     });
+
+
     Promise.all(insertQueriesCounter);
     res.redirect("/")
 }); 

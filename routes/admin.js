@@ -21,7 +21,6 @@ router.get("/:username", isAuthenticated, async (req, res) => {
         for (let j of all_days) {
             if (i.weekday == j.weekday) {
                 let bookedUsers = await db.any("SELECT username FROM days WHERE weekday = $1", [i.weekday]);
-                console.log(bookedUsers);
                 j.users = bookedUsers;
             }
         }
@@ -34,9 +33,19 @@ router.get("/:username", isAuthenticated, async (req, res) => {
 router.get("/reset/all", async (req, res) => {
     await db.none("DELETE FROM days");
     await db.none("UPDATE all_days SET counter = 0");
+    await db.none("UPDATE all_days SET counter = 0, status = 'insufficient' ");
 
     res.redirect("/auth/logout");
 });
+
+router.get("/delete/user", async (req, res) => {
+    await db.none("DELETE FROM days");
+
+
+
+    res.redirect("/auth/logout");
+});
+
 
 
 export default router ;
