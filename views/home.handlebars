@@ -10,10 +10,10 @@
 
         <div class="justify-content-center d-flex">
 
-            <div  class="days-wrapper">
+            <div class="days-wrapper">
                
                 {{#each all_days}}
-                    <div id="1" data-value="{{this.weekday}}" class=" days">
+                    <div  class="days {{this.status}}" id="1" data-value="{{this.weekday}}" >
                         <br>
                         {{this.weekday}} <br>
                         <p>{{this.counter}}</p>

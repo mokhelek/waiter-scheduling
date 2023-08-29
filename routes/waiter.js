@@ -33,7 +33,7 @@ router.post("/:username", async (req, res) => {
 
     const insertQueriesCounter = selectedValues.map((item) => {
         // return db.none("UPDATE all_days SET counter = all_days.counter + 1 WHERE weekday = $1", [item]);
-       return  db.none("UPDATE all_days SET counter = all_days.counter + 1, status = CASE WHEN all_days.counter >= 3 THEN 'sufficient' ELSE 'insufficient**' END WHERE weekday = $1", [item]);
+       return  db.none("UPDATE all_days SET counter = all_days.counter + 1, status = CASE WHEN all_days.counter < 2  THEN 'insufficient' WHEN all_days.counter > 2 THEN 'surplus' ELSE 'sufficient' END WHERE weekday = $1", [item]);
     });
 
 
