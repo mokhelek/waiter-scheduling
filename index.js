@@ -15,7 +15,6 @@ app.use(
     })
 );
 
-// TODO : --> I CAN HAVE DIFFERENT ROUTES FOR AUTHENTICATION AND FOR ACTIONS
 
 app.use(flash());
 app.use(express.static("public"));

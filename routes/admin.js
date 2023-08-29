@@ -31,7 +31,7 @@ router.get("/:username", isAuthenticated, async (req, res) => {
     res.render("admin-dashboard", { all_days, waiters });
 });
 
-router.get("/reset", async (req, res) => {
+router.get("/reset/all", async (req, res) => {
     await db.none("DELETE FROM days");
     await db.none("UPDATE all_days SET counter = 0");
 

@@ -5,20 +5,22 @@ document.querySelectorAll(".days").forEach((div) => {
     });
 });
 
+let usernameElem = document.querySelector("#username") ;
 
 document.getElementById("submit").addEventListener("click", () => {
     const selectedValues = [];
+  
     document.querySelectorAll(".days.selected").forEach((div) => {
         selectedValues.push(div.dataset.value);
     });
 
-    fetch("/submit/user", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ values: selectedValues }),
+
+    axios.post(`/waiters/${usernameElem.dataset.value}`, {
+        body: JSON.stringify(selectedValues),
     })
+    .then(() => {
+        location.reload()
+    });
         
 });
 

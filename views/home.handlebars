@@ -4,6 +4,7 @@
 
 
 <br />
+<span id="username" data-value="{{authenticatedUser}}" ></span>
 <div class="container">
        
 
@@ -12,12 +13,11 @@
             <div  class="days-wrapper">
                
                 {{#each all_days}}
-                
-                <div id="1" data-value="{{this.weekday}}" class=" days">
-                     <br>
-                    {{this.weekday}} <br>
-                    <p>{{this.counter}}</p>
-                </div>
+                    <div id="1" data-value="{{this.weekday}}" class=" days">
+                        <br>
+                        {{this.weekday}} <br>
+                        <p>{{this.counter}}</p>
+                    </div>
                 {{/each}}
                 
             </div>

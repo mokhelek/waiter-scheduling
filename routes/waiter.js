@@ -10,17 +10,21 @@ function isAuthenticated(req, res, next) {
     res.redirect("/auth/login");
 }
 
-router.get("/:username", isAuthenticated, async (req, res) => {
-    // TODO : -->  to display all the days for which the authenticated user indicated for availability
 
+
+router.get("/:username", isAuthenticated, async (req, res) => {
+    // todo: -> Days booked by the current logged-in waiter.
     let days = await db.any("SELECT * FROM days WHERE username = $1", [req.session.user.username]);
     let all_days = await db.any("SELECT * FROM all_days");
-    res.render("home", { days, all_days });
+    let authenticatedUser = req.session.user.username
+    res.render("home", { days, all_days, authenticatedUser});
 });
 
 router.post("/:username", async (req, res) => {
-    const selectedValues = req.body.values;
+    const selectedValues = JSON.parse(req.body.body) ;
     let authenticatedUser = req.session.user.username;
+
+    let days = await db.any("SELECT * FROM days WHERE username = $1", [req.session.user.username]);
 
     const insertQueries = selectedValues.map((item) => {
         return db.none("INSERT INTO days(username, weekday) VALUES($1, $2)", [authenticatedUser, item]);
@@ -31,7 +35,8 @@ router.post("/:username", async (req, res) => {
         return db.none("UPDATE all_days SET counter = all_days.counter + 1 WHERE weekday = $1", [item]);
     });
     Promise.all(insertQueriesCounter);
-});
+    res.redirect("/")
+}); 
 
 
 

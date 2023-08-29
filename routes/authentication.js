@@ -1,11 +1,10 @@
 import express from "express";
-var router = express.Router();
-
 import db from "../model/db.js";
 import authService from "../services/authService.js";
 
-const authServiceInstance = authService(db);
 
+const authServiceInstance = authService(db);
+var router = express.Router();
 
 
 router.get("/login", (req, res) => {
