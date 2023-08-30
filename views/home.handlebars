@@ -1,6 +1,6 @@
-<h1>Home Page</h1>
+<h1>Waiters Dashboard</h1>
 <span>
-    <a href="/auth/logout">Logout</a>
+<a href="/auth/logout" class="btn btn-outline-secondary btn-sm"> logout</a>
 </span>
 
 <br />
@@ -34,9 +34,11 @@
     <h3>Scheduled Days</h3>
     <br />
 
-    <div class="row">
+    <div class="d-flex">
         {{#each days}}
-            <div style="margin:0.8rem" class="card card-body col-1">
+            <div style="margin:0.8rem;background-color:rgb(194, 194, 194)" class="card card-body col-1">
+                <center>
+
                 <span>{{this.weekday}}
                     <span>
                         <a style="text-decoration: none;color:rgb(255, 91, 91)" href="/waiters/remove/{{this.id}}">
@@ -47,6 +49,7 @@
                         </a>
                     </span>
                 </span>
+                </center>
             </div>
         {{/each}}
     </div>

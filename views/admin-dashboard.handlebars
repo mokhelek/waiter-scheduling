@@ -13,9 +13,11 @@
 
             {{#each all_days}}
 
-                <div id="1" data-value="{{this.weekday}}" class="days">
+                <div id="1" data-value="{{this.weekday}}" class=" {{this.status}} days">
                     <br />
                     {{this.weekday}}
+                    <br />
+                    <p>{{this.counter}}</p>
 
                 </div>
 

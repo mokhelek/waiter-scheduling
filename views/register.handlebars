@@ -1,7 +1,24 @@
 <!-- register.handlebars -->
-<h2>Register</h2>
+{{!-- <h2>Register</h2>
 <form action="/auth/register" method="post">
     <input type="text" name="username" placeholder="Username" required>
     <input type="password" name="password" placeholder="Password" required>
     <button type="submit">Register</button>
-</form>
+</form> --}}
+
+
+<div style="height: 80vh;" class="container d-flex justify-content-center align-items-center">
+    <div style="border:1px solid gray; padding:4rem;box-shadow:0 0 8px rgb(177, 177, 177)" class="col-7">
+        <center><h2>Register</h2></center>
+        <form action="/auth/register" method="post">
+            <label for="username">username</label>
+            <input id="username" style="margin-bottom: 1rem;" class="form-control" type="text" name="username" placeholder="Username" required />
+
+            <label for="password">password</label>
+            <input id="password" style="margin-bottom: 1rem;" class="form-control" type="password" name="password" placeholder="Password" required />
+
+            <button class="btn btn-primary btn-sm" type="submit">Register</button>
+
+        </form>
+    </div>
+</div>
