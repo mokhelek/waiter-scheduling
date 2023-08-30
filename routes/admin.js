@@ -35,7 +35,7 @@ router.get("/reset/all", async (req, res) => {
     await db.none("UPDATE all_days SET counter = 0");
     await db.none("UPDATE all_days SET counter = 0, status = 'insufficient' ");
 
-    res.redirect("/");
+    res.redirect(`/admin/${req.session.user.username}`);
 });
 
 router.get("/delete/user", async (req, res) => {

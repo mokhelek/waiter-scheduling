@@ -35,7 +35,7 @@ export default function authService(db) {
         try {
             const hashedPassword = await bcrypt.hash(password, 10);
             await db.none("INSERT INTO waiters(username, password) VALUES($1, $2)", [username, hashedPassword]);
-            res.redirect("/login/user");
+            res.redirect(`/admin/${req.session.user.username}`);
         } catch (error) {
     
             res.redirect("/register");
