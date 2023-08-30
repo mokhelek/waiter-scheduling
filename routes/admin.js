@@ -38,14 +38,12 @@ router.get("/reset/all", async (req, res) => {
     res.redirect(`/admin/${req.session.user.username}`);
 });
 
-router.get("/delete/user", async (req, res) => {
-    await db.none("DELETE FROM days");
 
+router.get("/remove/:id", isAuthenticated, async (req, res) => {
+    await db.none('DELETE FROM waiters WHERE id = $1', req.params.id);
 
-
-    res.redirect("/auth/logout");
+    res.redirect(`/admin/${req.session.user.username}`);
 });
-
 
 
 export default router ;
