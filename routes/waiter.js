@@ -42,6 +42,12 @@ router.post("/:username", async (req, res) => {
 }); 
 
 
+router.get("/remove/:id", isAuthenticated, async (req, res) => {
+    await db.none('DELETE FROM days WHERE id = $1', req.params.id);
+   res.redirect("/")
+});
+
+
 
 
 export default router ;
