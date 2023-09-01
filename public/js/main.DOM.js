@@ -28,3 +28,5 @@ let detailsElem = document.querySelector('#details');
 document.querySelector('.days').addEventListener('onmouseover',()=>{
     detailsElem.style.display = "block" ;
 })
+
+
