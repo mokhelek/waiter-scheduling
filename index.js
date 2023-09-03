@@ -2,9 +2,11 @@ import express from "express";
 import { engine } from "express-handlebars";
 import bodyParser from "body-parser";
 
-
 import flash from "express-flash";
 import session from "express-session";
+
+
+import exphbs from "express-handlebars"
 
 let app = express();
 app.use(
@@ -15,11 +17,20 @@ app.use(
     })
 );
 
+const hbs = exphbs.create({
+    helpers: {
+        eq: function (a, b) {
+            return a === b;
+        },
+    },
+});
+
+app.engine("handlebars", hbs.engine);
+app.set("view engine", "handlebars");
 
 app.use(flash());
 app.use(express.static("public"));
-app.engine("handlebars", engine());
-app.set("view engine", "handlebars");
+// app.engine("handlebars", engine());
 app.set("views", "./views");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -40,13 +51,9 @@ import waiterRouter from "./routes/waiter.js";
 import adminRouter from "./routes/admin.js";
 import authRouter from "./routes/authentication.js";
 
-app.use('/waiters', waiterRouter);
-app.use('/admin', adminRouter);
-app.use('/auth', authRouter);
-
-
-
-
+app.use("/waiters", waiterRouter);
+app.use("/admin", adminRouter);
+app.use("/auth", authRouter);
 
 let PORT = process.env.PORT || 3000;
 app.listen(PORT, function () {

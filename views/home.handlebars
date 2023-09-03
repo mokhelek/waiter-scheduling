@@ -1,56 +1,97 @@
-<h1>Waiters Dashboard</h1>
-<span>
-<a href="/auth/logout" class="btn btn-outline-secondary btn-sm"> logout</a>
+<span class="" style="float: right;margin-right:1rem">
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+        </svg>
+        <span style="color: rgb(94, 93, 93);font-size:1.3rem">
+            &nbsp;{{authenticatedUser}}
+        </span>
+
+        <span>
+
+            &nbsp;
+
+            <a href="/auth/logout" class="btn btn-secondary"> logout</a>
+        </span>
+    </p>
 </span>
+<center><h1 style="margin-bottom: 1rem;">Waiters Dashboard</h1></center>
+<hr />
 
 <br />
 <span id="username" data-value="{{authenticatedUser}}"></span>
 <div class="container">
 
-    <div class="justify-content-center d-flex">
+    <div class="row">
+        <div class="col-9">
+            <center>
+                <h3 style="color: rgb(63, 63, 63);margin-bottom:1rem">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-calendar-day" viewBox="0 0 16 16">
+                        <path d="M4.684 11.523v-2.3h2.261v-.61H4.684V6.801h2.464v-.61H4v5.332h.684zm3.296 0h.676V8.98c0-.554.227-1.007.953-1.007.125 0 .258.004.329.015v-.613a1.806 1.806 0 0 0-.254-.02c-.582 0-.891.32-1.012.567h-.02v-.504H7.98v4.105zm2.805-5.093c0 .238.192.425.43.425a.428.428 0 1 0 0-.855.426.426 0 0 0-.43.43zm.094 5.093h.672V7.418h-.672v4.105z" />
+                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                    </svg>&nbsp;
+                    <span>
+                        Pick a day
+                    </span>
+                </h3>
+            </center>
+            <div class="justify-content-center d-flex">
+                <div class="days-wrapper">
 
-        <div class="days-wrapper">
+                    {{#each all_days}}
+                        <div class="days {{this.status}}" id="1" data-value="{{this.weekday}}">
+                            <br />
+                            {{this.weekday}}
+                            <br />
+                            <p>{{this.counter}}</p>
+                            {{#each ../days}}
+                                {{#if (eq this.weekday ../this.weekday) }}
+                                    booked
+                                {{/if}}
+                            {{/each}}
+                        </div>
+                    {{/each}}
 
-            {{#each all_days}}
-                <div class="days {{this.status}}" id="1" data-value="{{this.weekday}}">
-                    <br />
-                    {{this.weekday}}
-                    <br />
-                    <p>{{this.counter}}</p>
+                </div>
+
+            </div>
+            <br />
+            <br />
+            <center>
+                <button class="btn btn-primary" id="submit">Schedule</button>
+            </center>
+        </div>
+
+        <div class="col-3">
+            <center>
+                <h3 style="color: rgb(63, 63, 63)">Scheduled Days</h3>
+            </center>
+            <br />
+
+            {{#each days}}
+                <div class="d-flex">
+                    <div style="margin-bottom:0.8rem;background-color:rgb(221, 221, 221)" class="card card-body">
+                        <center>
+
+                            <span>
+                                {{this.weekday}}
+                                <span style="float: right;">
+                                    <a style="text-decoration: none;color:rgb(255, 91, 91)" href="/waiters/remove/{{this.id}}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                                        </svg>
+                                    </a>
+                                </span>
+                            </span>
+                        </center>
+                    </div>
                 </div>
             {{/each}}
-
         </div>
 
     </div>
 
-    <br />
-    <br />
-    <center>
-        <button class="btn btn-primary" id="submit">Schedule</button>
-    </center>
-
     <hr />
-    <h3>Scheduled Days</h3>
-    <br />
 
-    <div class="d-flex">
-        {{#each days}}
-            <div style="margin:0.8rem;background-color:rgb(194, 194, 194)" class="card card-body col-1">
-                <center>
-
-                <span>{{this.weekday}}
-                    <span>
-                        <a style="text-decoration: none;color:rgb(255, 91, 91)" href="/waiters/remove/{{this.id}}">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-                                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
-                            </svg>
-
-                        </a>
-                    </span>
-                </span>
-                </center>
-            </div>
-        {{/each}}
-    </div>
 </div>

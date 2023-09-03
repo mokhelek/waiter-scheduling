@@ -1,5 +1,5 @@
 body {
-  padding: 50px;
+  padding: 40px;
 
 }
 
@@ -13,7 +13,8 @@ a {
   padding:1rem;
   flex: 0 1 140px;
   text-align:center;
-  height: 7rem;
+  height: 9rem;
+  width:9rem;
 
   color: rgb(53, 53, 53);
   text-shadow: 0 0 6px white;
@@ -33,7 +34,7 @@ a {
   flex-wrap: wrap;
   justify-content: center;
   text-align: center;
-  
+  width:100%
 }
 
 .waiter li:nth-child(2n + 1){
