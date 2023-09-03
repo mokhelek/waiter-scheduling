@@ -41,10 +41,8 @@
 
                     {{#each all_days}}
                         <div class="days {{this.status}}" id="1" data-value="{{this.weekday}}">
-                            <br />
-                            {{this.weekday}}
-                            <br />
-                            <p>{{this.counter}}</p>
+                            <h5 style="margin-top: 0.8rem;">{{this.counter}}</h5>
+                            <p style="margin-top: 0.4rem;color:rgb(71, 71, 71)" >{{this.weekday}}</p> 
                             {{#each ../days}}
                                 {{#if (eq this.weekday ../this.weekday) }}
                                     booked
