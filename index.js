@@ -22,6 +22,10 @@ const hbs = exphbs.create({
         eq: function (a, b) {
             return a === b;
         },
+        isEmptyArray: function (array) {
+            console.log("##### ",array)
+            return array == undefined ;
+          },
     },
 });
 

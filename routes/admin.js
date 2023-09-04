@@ -15,7 +15,7 @@ router.get("/:username", isAuthenticated, async (req, res) => {
     let authenticatedUser = req.session.user.username;
     let selectedDays = await db.any("SELECT * from days");
 
-    let all_days = await db.any("SELECT * FROM all_days"); // Arr of days
+    let all_days = await db.any("SELECT * FROM all_days ORDER BY id ASC"); // Arr of days
 
     for (let i of selectedDays) {
         for (let j of all_days) {
