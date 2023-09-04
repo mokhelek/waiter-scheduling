@@ -22,17 +22,6 @@ router.post("/:username", async (req, res) => {
     const selectedValues = JSON.parse(req.body.body);
     let authenticatedUser = req.session.user.username;
 
-    // selectedValues.map(async (item) => {
-    //     setTimeout(async () => {
-    //         const insertQuery = `
-    //                     INSERT INTO days (username, weekday)
-    //                     VALUES ($1, $2)
-    //                     ON CONFLICT (username, weekday) DO NOTHING
-    //                     RETURNING id, username, weekday;
-    //                 `;
-    //         await db.oneOrNone(insertQuery, [authenticatedUser, item]);
-    //     }, 3000);
-    // });
     const insertQuery = `
     INSERT INTO days (username, weekday)
     VALUES ($1, $2)
@@ -46,13 +35,12 @@ router.post("/:username", async (req, res) => {
         validDays.push(result) 
     }
 
-    console.log("VALID DAYS ",validDays)
     for (let i of validDays) {
         if(i != null){
            await db.none("UPDATE all_days SET counter = all_days.counter + 1, status = CASE WHEN all_days.counter < 2  THEN 'insufficient' WHEN all_days.counter > 2 THEN 'surplus' ELSE 'sufficient' END WHERE weekday = $1", [i.weekday]);
         }
     }
-
+    
     res.redirect("/");
 });
 

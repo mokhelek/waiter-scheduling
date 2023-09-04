@@ -17,8 +17,6 @@ a {
   width:9rem;
 
   color: rgb(53, 53, 53);
-  /* text-shadow: 0 0 6px white; */
-  
 
   cursor: pointer;
   user-select: none;
@@ -40,18 +38,21 @@ a {
 }
 
 .days.selected {
-  background-color: rgb(93, 203, 240) !important;
+  box-shadow: 0 0 8px rgb(36, 36, 36);
+  scale: 1.06;
+  border: 3px rgb(60, 122, 255) solid;
 }
 
 .days.selected-already{
-  background-color: rgba(128, 128, 128, 0.466) !important;
-  border: 1px gray solid;
-  color:gray
+  border: none;
+  scale: 1;
+  box-shadow: none;
+  border: 2px transparent solid;
 }
 
 .days-wrapper{
   display: flex;
-  gap: 6px;
+  gap: 15px;
   flex-wrap: wrap;
   justify-content: center;
   text-align: center;
@@ -70,20 +71,12 @@ li{
 
 
 
-/* #details {
-  display: none;
-}
-
-.days-admin:hover + #details {
-  display: block !important;
-} */
-
 .sufficient{
   background-color: rgba(46, 255, 46, 0.753);
 }
 
 .insufficient{
-  background-color: rgba(255, 88, 46, 0.753);
+  background-color: rgb(253, 106, 69);
 }
 
 .surplus{
