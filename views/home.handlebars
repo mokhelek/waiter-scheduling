@@ -45,7 +45,10 @@
                             <p style="margin-top: 0.4rem;color:rgb(71, 71, 71)" >{{this.weekday}}</p> 
                             {{#each ../days}}
                                 {{#if (eq this.weekday ../this.weekday) }}
-                                    booked
+                                    <div class="rounded-pill" style="border: 1px blue solid;" >
+
+                                        booked
+                                    </div>
                                 {{/if}}
                             {{/each}}
                         </div>
