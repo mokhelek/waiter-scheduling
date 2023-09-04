@@ -23,7 +23,6 @@ const hbs = exphbs.create({
             return a === b;
         },
         isEmptyArray: function (array) {
-            console.log("##### ",array)
             return array == undefined ;
           },
     },

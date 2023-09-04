@@ -22,7 +22,6 @@ function viewBtn(id){
     viewBtn.classList.toggle('hide')
 }
 
-days-stats
 
 
 let usernameElem = document.querySelector("#username") ;
