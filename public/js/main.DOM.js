@@ -13,6 +13,17 @@ document.querySelectorAll(".booked").forEach((div) => {
 });
 
 
+function viewBtn(id){
+    let waiterBooked = document.querySelector(`.waiter-booked${id}`);
+    let dayStats = document.querySelector(`.days-stats${id}`);
+    let viewBtn = document.querySelector(`.view-btn${id}`);
+    waiterBooked.classList.toggle('hide');
+    dayStats.classList.toggle('hide');
+    viewBtn.classList.toggle('hide')
+}
+
+days-stats
+
 
 let usernameElem = document.querySelector("#username") ;
 
@@ -37,5 +48,3 @@ let detailsElem = document.querySelector('#details');
 document.querySelector('.days').addEventListener('onmouseover',()=>{
     detailsElem.style.display = "block" ;
 })
-
-

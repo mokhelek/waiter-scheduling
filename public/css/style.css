@@ -30,12 +30,13 @@ a {
   padding:1rem;
   flex: 0 1 140px;
   text-align:center;
-  height: 9rem;
+  min-height: 9rem;
   width:9rem;
 
   color: rgb(53, 53, 53);
-
-
+}
+.hide{
+  display: none;
 }
 
 .days.selected {
@@ -69,13 +70,13 @@ li{
 
 
 
-#details {
+/* #details {
   display: none;
 }
 
-.days:hover + #details {
+.days-admin:hover + #details {
   display: block !important;
-}
+} */
 
 .sufficient{
   background-color: rgba(46, 255, 46, 0.753);
