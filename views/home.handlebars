@@ -40,13 +40,16 @@
                 <div class="days-wrapper">
 
                     {{#each all_days}}
-                        <div class="days {{this.status}}" id="1" data-value="{{this.weekday}}">
+                        <div class="days {{this.status}} {{#each ../days}}{{#if (eq this.weekday ../this.weekday) }} booked{{/if}} {{/each}}" id="1" data-value="{{this.weekday}}">
                             <h5 style="margin-top: 0.8rem;">{{this.counter}}</h5>
                             <p style="margin-top: 0.4rem;color:rgb(71, 71, 71)" >{{this.weekday}}</p> 
                             {{#each ../days}}
                                 {{#if (eq this.weekday ../this.weekday) }}
                                     <div class="rounded-pill" style="border: 1px blue solid;background-color:rgb(50, 139, 255);color:rgb(248, 248, 248);font-size:0.95rem" >
-                                        booked
+                                       <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
+                                            <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
+                                            <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
+                                        </svg>&nbsp;selected
                                     </div>
                                 {{/if}}
                             {{/each}}

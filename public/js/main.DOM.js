@@ -5,6 +5,15 @@ document.querySelectorAll(".days").forEach((div) => {
     });
 });
 
+document.querySelectorAll(".booked").forEach((div) => {
+    div.addEventListener("click", function () {
+        this.classList.toggle("selected-already");
+        //   updateSelectedValues();
+    });
+});
+
+
+
 let usernameElem = document.querySelector("#username") ;
 
 document.getElementById("submit").addEventListener("click", () => {

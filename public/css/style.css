@@ -25,7 +25,13 @@ a {
 }
 
 .days.selected {
-  background-color: lightblue !important;
+  background-color: rgb(93, 203, 240) !important;
+}
+
+.days.selected-already{
+  background-color: rgba(128, 128, 128, 0.466) !important;
+  border: 1px gray solid;
+  color:gray
 }
 
 .days-wrapper{
