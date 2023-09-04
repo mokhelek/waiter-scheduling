@@ -12,7 +12,7 @@ function isAuthenticated(req, res, next) {
 
 router.get("/:username", isAuthenticated, async (req, res) => {
     let waiters = await db.any("SELECT * FROM waiters");
-
+    let authenticatedUser = req.session.user.username;
     let selectedDays = await db.any("SELECT * from days");
 
     let all_days = await db.any("SELECT * FROM all_days"); // Arr of days
@@ -27,7 +27,7 @@ router.get("/:username", isAuthenticated, async (req, res) => {
     }
 
     // ? [{'weekday':'mon', 'waiters': [] }]
-    res.render("admin-dashboard", { all_days, waiters });
+    res.render("admin-dashboard", { all_days, waiters, authenticatedUser });
 });
 
 router.get("/reset/all", async (req, res) => {

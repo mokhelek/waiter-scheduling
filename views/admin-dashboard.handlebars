@@ -1,7 +1,30 @@
-<h1>Admin dashboard</h1>
+{{! <h1>Admin dashboard</h1>
 
 <a href="/admin/reset/all" class="btn btn-primary btn-sm"> reset</a>
-<a href="/auth/logout" class="btn btn-outline-secondary btn-sm"> logout</a>
+}}
+
+<span class="" style="float: right;margin-right:1rem">
+    <p>
+        <span>
+            <a href="/admin/reset/all" class="btn btn-primary btn-sm"> reset</a>
+        </span>
+
+        &nbsp;
+        <span>
+            <a href="/auth/logout" class="btn btn-outline-secondary btn-sm"> logout</a>
+        </span>
+        &nbsp;
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+        </svg>
+        <span style="color: rgb(94, 93, 93);font-size:1.3rem">
+            &nbsp;{{authenticatedUser}}
+        </span>
+    </p>
+</span>
+<center><h1 style="margin-bottom: 1rem;">Admin Dashboard</h1></center>
+<hr />
 
 <br />
 
@@ -11,7 +34,7 @@
 
         <div class="days-wrapper">
 
-            {{#each all_days}}
+            {{!-- {{#each all_days}}
 
                 <div id="1" data-value="{{this.weekday}}" class=" {{this.status}} days">
                     <br />
@@ -35,6 +58,21 @@
                     <p> <span style="font-size: 1.5rem;font-weight:600" > {{this.counter}} </span>  have booked </p>
                 </div>
 
+            {{/each}} --}}
+
+            {{#each all_days}}
+                <div class="days-admin {{this.status}} " id="1" data-value="{{this.weekday}}">
+                    <h5 style="margin-top: 0.8rem;">{{this.counter}}</h5>
+                    <p style="margin-top: 0.4rem;color:rgb(71, 71, 71)">{{this.weekday}}</p>
+
+                    <button class="btn rounded-pill view-btn" style="border: 1px blue solid;background-color:rgb(50, 139, 255);color:rgb(248, 248, 248);font-size:0.95rem;padding:0 1rem">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                        </svg>&nbsp;view
+                    </button>
+
+                </div>
             {{/each}}
 
         </div>

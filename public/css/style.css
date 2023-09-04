@@ -24,6 +24,20 @@ a {
   user-select: none;
 }
 
+.days-admin{
+  border: 2px rgb(223, 103, 42) solid;
+  border-radius: 5px;
+  padding:1rem;
+  flex: 0 1 140px;
+  text-align:center;
+  height: 9rem;
+  width:9rem;
+
+  color: rgb(53, 53, 53);
+
+
+}
+
 .days.selected {
   background-color: rgb(93, 203, 240) !important;
 }
