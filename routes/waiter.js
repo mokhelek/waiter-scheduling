@@ -22,32 +22,36 @@ router.post("/:username", async (req, res) => {
     const selectedValues = JSON.parse(req.body.body);
     let authenticatedUser = req.session.user.username;
 
-    const insertQueries = selectedValues.map(async (item) => {
-        try {
-            const insertQuery = `
-                    INSERT INTO days (username, weekday)
-                    VALUES ($1, $2)
-                    ON CONFLICT (username, weekday) DO NOTHING
-                    RETURNING id, username, weekday;
-                `;
-            let result = await db.oneOrNone(insertQuery, [authenticatedUser, item]);
+    // selectedValues.map(async (item) => {
+    //     setTimeout(async () => {
+    //         const insertQuery = `
+    //                     INSERT INTO days (username, weekday)
+    //                     VALUES ($1, $2)
+    //                     ON CONFLICT (username, weekday) DO NOTHING
+    //                     RETURNING id, username, weekday;
+    //                 `;
+    //         await db.oneOrNone(insertQuery, [authenticatedUser, item]);
+    //     }, 3000);
+    // });
+    const insertQuery = `
+    INSERT INTO days (username, weekday)
+    VALUES ($1, $2)
+    ON CONFLICT (username, weekday) DO NOTHING
+    RETURNING id, username, weekday;
+`;
 
-            if (result != null) {
-                const insertQueriesCounter = selectedValues.map(async (item) => {
-                    return await db.none("UPDATE all_days SET counter = all_days.counter + 1, status = CASE WHEN all_days.counter < 2  THEN 'insufficient' WHEN all_days.counter > 2 THEN 'surplus' ELSE 'sufficient' END WHERE weekday = $1", [item]);
-                });
+    let validDays = []
+    for (let i of selectedValues) {
+        let result = await db.oneOrNone(insertQuery, [authenticatedUser, i]);
+        validDays.push(result) 
+    }
 
-                await Promise.all(insertQueriesCounter);
-            } else {
-                // TODO : --> Ask if user want to update the day ?
-                console.log("WOULD YOU LIKE TO UPDATE AVAILABILITY ??");
-            }
-            return result;
-        } catch (error) {
-            console.log(error);
+    console.log("VALID DAYS ",validDays)
+    for (let i of validDays) {
+        if(i != null){
+           await db.none("UPDATE all_days SET counter = all_days.counter + 1, status = CASE WHEN all_days.counter < 2  THEN 'insufficient' WHEN all_days.counter > 2 THEN 'surplus' ELSE 'sufficient' END WHERE weekday = $1", [i.weekday]);
         }
-    });
-    await Promise.all(insertQueries);
+    }
 
     res.redirect("/");
 });
@@ -62,3 +66,17 @@ router.get("/remove/:id", isAuthenticated, async (req, res) => {
 });
 
 export default router;
+
+/*
+
+        if (result != null) {
+                const insertQueriesCounter = selectedValues.map(async (item) => {
+                    return await db.none("UPDATE all_days SET counter = all_days.counter + 1, status = CASE WHEN all_days.counter < 2  THEN 'insufficient' WHEN all_days.counter > 2 THEN 'surplus' ELSE 'sufficient' END WHERE weekday = $1", [item]);
+                });
+
+                await Promise.all(insertQueriesCounter);
+            } else {
+                console.log("WOULD YOU LIKE TO UPDATE AVAILABILITY ??");
+            }
+
+            */

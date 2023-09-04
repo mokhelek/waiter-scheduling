@@ -42,7 +42,7 @@
                     {{#each all_days}}
                         <div class="days {{this.status}} {{#each ../days}}{{#if (eq this.weekday ../this.weekday) }} booked{{/if}} {{/each}}" id="1" data-value="{{this.weekday}}">
                             <h5 style="margin-top: 0.8rem;">{{this.counter}}</h5>
-                            <p style="margin-top: 0.4rem;color:rgb(71, 71, 71)" >{{this.weekday}}</p> 
+                            <p style="margin-top: 1.8rem;color:rgb(49, 49, 49)" >{{this.weekday}}</p> 
                             {{#each ../days}}
                                 {{#if (eq this.weekday ../this.weekday) }}
                                     <div class="rounded-pill" style="border: 1px blue solid;background-color:rgb(50, 139, 255);color:rgb(248, 248, 248);font-size:0.95rem" >
@@ -66,9 +66,9 @@
             </center>
         </div>
 
-        <div class="col-3">
+        <div style="border-left: 1px rgb(168, 168, 168) solid ;" class="col-3">
             <center>
-                <h3 style="color: rgb(63, 63, 63)">Scheduled Days</h3>
+                <h3 style="color: rgb(63, 63, 63);margin-left:3rem">Scheduled Days</h3>
             </center>
             <br />
 

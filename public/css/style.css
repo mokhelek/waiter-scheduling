@@ -13,7 +13,7 @@ a {
   padding:1rem;
   flex: 0 1 140px;
   text-align:center;
-  height: 9rem;
+  min-height: 7.5rem;
   width:9rem;
 
   color: rgb(53, 53, 53);
