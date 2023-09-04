@@ -10,9 +10,9 @@ export default function databaseInteraction(db) {
         return await db.any("SELECT * FROM all_days");
     }
 
-    async function addDay() {
-        const selectedDays = ['Monday'];
-        let authenticatedUser = 'Kat' ;
+    async function addDay(days,user) {
+        const selectedDays = days;
+        let authenticatedUser = user ;
 
         const insertQueries = selectedDays.map(async (item) => {
             const insertQuery = `
@@ -38,9 +38,15 @@ export default function databaseInteraction(db) {
         await Promise.all(insertQueries);
     }
 
+    async function allSchedulingInfo(){
+        return await db.any('SELECT * FROM days')
+    }
+
     return {
         addWaiter,
         allWaiters,
         allDays,
+        addDay,
+        allSchedulingInfo
     };
 }
