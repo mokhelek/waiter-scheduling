@@ -11,7 +11,7 @@ function isAuthenticated(req, res, next) {
 }
 
 router.get("/:username", isAuthenticated, async (req, res) => {
-    let waiters = await db.any("SELECT * FROM waiters");
+
     let authenticatedUser = req.session.user.username;
     let selectedDays = await db.any("SELECT * from days");
 
@@ -26,9 +26,10 @@ router.get("/:username", isAuthenticated, async (req, res) => {
         }
     }
 
-    // ? [{'weekday':'mon', 'waiters': [] }]
-    res.render("admin-dashboard", { all_days, waiters, authenticatedUser });
+    res.render("admin-dashboard", { all_days, authenticatedUser });
 });
+
+
 
 router.get("/reset/all", async (req, res) => {
     await db.none("DELETE FROM days");
@@ -36,6 +37,18 @@ router.get("/reset/all", async (req, res) => {
     await db.none("UPDATE all_days SET counter = 0, status = 'insufficient' ");
 
     res.redirect(`/admin/${req.session.user.username}`);
+});
+
+router.get("/waiter-list/all", async (req, res) => {
+    let authenticatedUser = req.session.user.username;
+    let waiters = await db.any("SELECT * FROM waiters");
+
+    res.render("waiter-list", {waiters,authenticatedUser});
+});
+
+router.get("/registration/add-waiters", async (req, res) => {
+    let authenticatedUser = req.session.user.username;
+    res.render("admin-add-waiter", {authenticatedUser});
 });
 
 
