@@ -40,15 +40,8 @@
                 <div class="days-wrapper">
 
                     {{#each all_days}}
-                        <div style="position: relative;" class="days {{this.status}} {{#each ../days}}{{#if (eq this.weekday ../this.weekday) }} booked{{/if}} {{/each}}" id="1" data-value="{{this.weekday}}">
-                            {{!-- <div style="position: absolute;right:0;top:0" >
-                                <div class="{{this.status}}" >
-
-                                </div>
-                            </div> --}}
-                            
-                            
-                            {{!-- <h5 style="margin-top: 0.8rem;">{{this.counter}}</h5> --}}
+                        <div style="position: relative;" class="days {{#each ../days}}{{#if (eq this.weekday ../this.weekday) }} booked{{/if}} {{/each}}" id="1" data-value="{{this.weekday}}">
+                     
                             <p style="margin-top: 2rem;color:rgb(49, 49, 49)" >{{this.weekday}}</p> 
                             {{#each ../days}}
                                 {{#if (eq this.weekday ../this.weekday) }}
