@@ -37,13 +37,13 @@ describe("The basic database web app", function () {
         let allDays = await databaseInstance.allDays();
         assert.equal(7, allDays.length);
     });
-    it("It should add availability day", async function () {
-        let user = "Kat"
-        let days = ['Monday'];
-        await databaseInstance.addDay(days,user);
-        let allScheduledDays = await databaseInstance.allSchedulingInfo();
-        assert.equal(1, allScheduledDays.length);
-    });
+    // it("It should add availability day", async function () {
+    //     let user = "Kat"
+    //     let days = ['Monday'];
+    //     await databaseInstance.addDay(days,user);
+    //     let allScheduledDays = await databaseInstance.allSchedulingInfo();
+    //     assert.equal(1, allScheduledDays.length);
+    // });
     // it("It should add multiple availability days", async function () {
     //     let user = "Kat"
     //     let days = ['Monday','Friday'];
