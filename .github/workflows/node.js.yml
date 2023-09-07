@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [16.x, 18.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     env: 
       DATABASE_URL_TEST: postgres://tqigtoks:37d4bW22w2qYs7K10BUaKWhU8PDR1Qlw@dumbo.db.elephantsql.com/tqigtoks

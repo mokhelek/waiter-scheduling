@@ -37,29 +37,29 @@ describe("The basic database web app", function () {
         let allDays = await databaseInstance.allDays();
         assert.equal(7, allDays.length);
     });
-    // it("It should add availability day", async function () {
-    //     let user = "Kat"
-    //     let days = ['Monday'];
-    //     await databaseInstance.addDay(days,user);
-    //     let allScheduledDays = await databaseInstance.allSchedulingInfo();
-    //     assert.equal(1, allScheduledDays.length);
-    // });
-    // it("It should add multiple availability days", async function () {
-    //     let user = "Kat"
-    //     let days = ['Monday','Friday'];
-    //     await databaseInstance.addDay(days,user);
-    //     let allScheduledDays = await databaseInstance.allSchedulingInfo();
-    //     assert.equal(2, allScheduledDays.length);
-    // });
-    // it("It should add multiple availability days", async function () {
-    //     let user = "Kat"
-    //     let days = ['Monday','Friday'];
-    //     await databaseInstance.addDay(days,user);
-    //     let allScheduledDays = await databaseInstance.allSchedulingInfo();
-    //     assert.equal(2, allScheduledDays.length);
-    // });
-
-    after(function () {
-        db.$pool.end;
+    it("It should add availability day", async function () {
+        let user = "Kat"
+        let days = ['Monday'];
+        await databaseInstance.addDay(days,user);
+        let allScheduledDays = await databaseInstance.allSchedulingInfo();
+        assert.equal(1, allScheduledDays.length);
     });
+    it("It should add multiple availability days", async function () {
+        let user = "Kat"
+        let days = ['Monday','Friday'];
+        await databaseInstance.addDay(days,user);
+        let allScheduledDays = await databaseInstance.allSchedulingInfo();
+        assert.equal(2, allScheduledDays.length);
+    });
+    it("It should add multiple availability days", async function () {
+        let user = "Kat"
+        let days = ['Monday','Friday'];
+        await databaseInstance.addDay(days,user);
+        let allScheduledDays = await databaseInstance.allSchedulingInfo();
+        assert.equal(2, allScheduledDays.length);
+    });
+
+    after(() => {
+        db.$pool.end;
+      });
 });
